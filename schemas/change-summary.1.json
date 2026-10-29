@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velorona.ai/schemas/change-summary/1.json",
+  "title": "ChangeSummary",
+  "type": "object",
+  "required": ["entity_id", "now_ts", "then_ts", "n_hours", "changes"],
+  "properties": {
+    "entity_id": {"type": "string"},
+    "now_ts": {"type": "string"},
+    "then_ts": {"type": "string"},
+    "n_hours": {"type": "number", "exclusiveMinimum": 0},
+    "changes": {"type": "array", "items": {"type": "object",
+      "required": ["metric", "kind", "source", "unit", "then", "now", "result"],
+      "properties": {
+        "metric": {"type": "string"}, "kind": {"enum": ["observed", "forecast", "model"]},
+        "source": {"type": "string"}, "unit": {"type": "string"},
+        "then": {"type": ["number", "string", "null"]}, "now": {"type": ["number", "string", "null"]},
+        "delta": {"type": ["number", "null"]},
+        "result": {"enum": ["increased", "decreased", "unchanged", "status_changed", "insufficient_history", "no_data"]},
+        "then_ts_actual": {"type": "string"}, "now_ts_actual": {"type": "string"},
+        "available_hours": {"type": "number", "description": "Only with insufficient_history: how many hours of this series are stored."},
+        "nodata_reason": {"type": "string"}
+      }}}
+  }
+}
