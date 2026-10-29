@@ -3,7 +3,7 @@
 // module.exports. No I/O, no clock: callers pass `now`.
 (function (root) {
   "use strict";
-  const VERSION = "0.1.0";
+  const VERSION = "0.2.0";
   const METRICS = ["rain_rate", "temperature", "wind_speed", "snowfall", "weather_code", "rain_attenuation_estimate", "exposure_ratio", "status", "clearance_ratio"];
   const KINDS = ["observed", "forecast", "model"];
   const ENTITY_TYPES = ["link", "site"];
@@ -135,14 +135,16 @@
   }
 
   const hhmm = (ts) => ts.slice(11, 16) + " UTC";
+  const gapHours = (change) => roundHalfAway((parseTs(change.now_ts_actual) - parseTs(change.then_ts_actual)) / 3600, 1);
   function renderText(change, nHours, entityLabel) {
     const who = `${LABELS[change.metric]} at ${entityLabel}`, hrs = formatNumber(nHours), how = `${KIND_WORDS[change.kind]}, ${change.source}`;
+    const ago = change.then_ts_actual ? formatNumber(gapHours(change)) : hrs;   // the real age of the compared value, not the requested window
     if (change.result === "insufficient_history") return `${who}: no stored value from about ${hrs} h ago (this series covers ${formatNumber(change.available_hours)} h).`;
-    if (change.result === "no_data") return `${who}: NO DATA ${change.now === null ? "now" : hrs + " h ago"}${change.nodata_reason ? " (" + change.nodata_reason + ")" : ""}. Nothing was substituted.`;
+    if (change.result === "no_data") return `${who}: NO DATA ${change.now === null ? "now" : ago + " h ago"}${change.nodata_reason ? " (" + change.nodata_reason + ")" : ""}. Nothing was substituted.`;
     const dg = PRECISION[change.metric];
     const fmt = dg !== undefined && isNumber(change.now) ? (v) => formatFixed(v, dg) : (v) => String(v);
     const unit = change.unit === "enum" || change.unit === "wmo_code" ? "" : " " + change.unit;
-    return `${who}: ${fmt(change.now)}${unit} now, ${fmt(change.then)}${unit} ${hrs} h ago (${how}, ${hhmm(change.then_ts_actual)} → ${hhmm(change.now_ts_actual)}).`;
+    return `${who}: ${fmt(change.now)}${unit} now, ${fmt(change.then)}${unit} ${ago} h ago (${how}, ${hhmm(change.then_ts_actual)} → ${hhmm(change.now_ts_actual)}).`;
   }
 
   function csvCell(v) {

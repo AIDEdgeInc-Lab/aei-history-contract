@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aei-history-contract"
-version = "0.1.0"
+version = "0.2.0"
 description = "Velorona local-history contract: HistoryRecord schema, retention/size pruning, deterministic 'what changed' rules and CSV export (Python reference + JS port)."
 requires-python = ">=3.9"
 license = { text = "Apache-2.0" }

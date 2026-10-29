@@ -21,8 +21,8 @@ def test_golden_case(case):
 
 
 def test_version_matches_pyproject_and_golden():
-    assert c.VERSION == GOLD["version"] == "0.1.0"
-    assert 'version = "0.1.0"' in (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text()
+    assert c.VERSION == GOLD["version"] == "0.2.0"
+    assert 'version = "0.2.0"' in (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text()
 
 
 def test_the_contract_example_sentence():
@@ -72,3 +72,13 @@ def test_prune_never_returns_more_than_the_caps():
     rows = [rec("2026-11-02T%02d:%02d:00Z" % (h, m), 1.0) for h in range(0, 19) for m in (0, 30)]
     kept, dropped = c.prune(rows, "2026-11-02T19:00:00Z", 24, 10, 10**9)
     assert len(kept) == 10 and dropped == len(rows) - 10 and kept[-1]["ts"] == "2026-11-02T18:30:00Z"
+
+
+def test_the_text_states_the_real_age_of_the_compared_value_not_the_requested_window():
+    rows = [rec("2026-11-02T14:24:00Z", 0.0), rec("2026-11-02T19:00:00Z", 1.2)]       # nearest stored row is 4 h 36 min earlier; the window asked for 5 h
+    ch = c.summarize_changes(rows, "A", "2026-11-02T19:00:00Z", 5)["changes"][0]
+    assert ch["result"] == "increased"
+    assert c.render_text(ch, 5, "Site A") == "Rain rate at Site A: 1.2 mm/h now, 0.0 mm/h 4.6 h ago (model-derived, open-meteo, 14:24 UTC → 19:00 UTC)."
+    nodata = [dict(rec("2026-11-02T14:24:00Z", None), nodata_reason="rain missing"), rec("2026-11-02T19:00:00Z", 1.2)]
+    ch = c.summarize_changes(nodata, "A", "2026-11-02T19:00:00Z", 5)["changes"][0]
+    assert "NO DATA 4.6 h ago (rain missing)" in c.render_text(ch, 5, "Site A")

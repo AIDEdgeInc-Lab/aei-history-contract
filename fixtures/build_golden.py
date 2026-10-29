@@ -77,6 +77,10 @@ summary = c.summarize_changes(hist, "A", NOW, 5)
 for ch in summary["changes"]:
     add("render_text", [ch, 5, "Site A"], "text %s/%s/%s %s" % (ch["metric"], ch["kind"], ch["source"], ch["result"]))
 add("render_text", [c.summarize_changes(hist, "A", NOW, 24)["changes"][0], 24, "Site A"], "text insufficient history")
+off = [rec(H(14, 24), 0.0), rec(H(19), 1.2)]                       # nearest stored row is 4.6 h earlier than the 5 h asked for
+add("render_text", [c.summarize_changes(off, "A", NOW, 5)["changes"][0], 5, "Site A"], "text states the real age (4.6 h), not the window")
+off_nd = [rec(H(14, 24), None, nodata_reason="rain missing"), rec(H(19), 1.2)]
+add("render_text", [c.summarize_changes(off_nd, "A", NOW, 5)["changes"][0], 5, "Site A"], "text no data states the real age")
 add("csv_cell", ["=SUM(A1)"], "cell formula text")
 add("csv_cell", [-1.5], "cell negative number is not guarded")
 add("csv_cell", ['say "hi", ok'], "cell quoting")

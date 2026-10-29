@@ -2610,6 +2610,49 @@
   },
   {
    "args": [
+    {
+     "delta": 1.2,
+     "kind": "model",
+     "metric": "rain_rate",
+     "now": 1.2,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "increased",
+     "source": "open-meteo",
+     "then": 0.0,
+     "then_ts_actual": "2026-11-02T14:24:00Z",
+     "unit": "mm/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Rain rate at Site A: 1.2 mm/h now, 0.0 mm/h 4.6 h ago (model-derived, open-meteo, 14:24 UTC → 19:00 UTC).",
+   "fn": "render_text",
+   "name": "text states the real age (4.6 h), not the window"
+  },
+  {
+   "args": [
+    {
+     "delta": null,
+     "kind": "model",
+     "metric": "rain_rate",
+     "nodata_reason": "rain missing",
+     "now": 1.2,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "no_data",
+     "source": "open-meteo",
+     "then": null,
+     "then_ts_actual": "2026-11-02T14:24:00Z",
+     "unit": "mm/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Rain rate at Site A: NO DATA 4.6 h ago (rain missing). Nothing was substituted.",
+   "fn": "render_text",
+   "name": "text no data states the real age"
+  },
+  {
+   "args": [
     "=SUM(A1)"
    ],
    "expected": "'=SUM(A1)",
@@ -2718,5 +2761,5 @@
    "name": "filename fallback"
   }
  ],
- "version": "0.1.0"
+ "version": "0.2.0"
 }

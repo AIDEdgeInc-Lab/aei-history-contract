@@ -7,7 +7,7 @@ integer, never with round() or toFixed(), so Python and JavaScript agree on ever
 import math
 import re
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 SCHEMA_RECORD = "https://velorona.ai/schemas/history-record/1.json"
 SCHEMA_CHANGE = "https://velorona.ai/schemas/change-summary/1.json"
 
@@ -231,22 +231,28 @@ def _hhmm(ts):
     return ts[11:16] + " UTC"
 
 
+def _gap_hours(change):
+    """Hours between the two stored rows actually compared, to one decimal (5 for 14:00 -> 19:00; 4.6 when the nearest row was 4 h 36 min earlier)."""
+    return round_half_away((parse_ts(change["now_ts_actual"]) - parse_ts(change["then_ts_actual"])) / 3600, 1)
+
+
 def render_text(change, n_hours, entity_label):
     """One sentence per change, built from fields only (no adjectives, no 'worsening'). `entity_label` is shown, e.g. 'Site A'."""
     label = LABELS[change["metric"]]
     who = f"{label} at {entity_label}"
     hrs = format_number(n_hours)
+    ago = format_number(_gap_hours(change)) if change.get("then_ts_actual") else hrs   # the real age of the compared value, not the requested window
     how = f"{KIND_WORDS[change['kind']]}, {change['source']}"
     res = change["result"]
     if res == "insufficient_history":
         return f"{who}: no stored value from about {hrs} h ago (this series covers {format_number(change['available_hours'])} h)."
     if res == "no_data":
         why = change.get("nodata_reason")
-        return f"{who}: NO DATA {'now' if change['now'] is None else hrs + ' h ago'}{' (' + why + ')' if why else ''}. Nothing was substituted."
+        return f"{who}: NO DATA {'now' if change['now'] is None else ago + ' h ago'}{' (' + why + ')' if why else ''}. Nothing was substituted."
     dg = PRECISION.get(change["metric"])
     fmt = (lambda v: format_fixed(v, dg)) if dg is not None and _is_number(change["now"]) else (lambda v: str(v))
     unit = "" if change["unit"] in ("enum", "wmo_code") else " " + change["unit"]
-    return (f"{who}: {fmt(change['now'])}{unit} now, {fmt(change['then'])}{unit} {hrs} h ago "
+    return (f"{who}: {fmt(change['now'])}{unit} now, {fmt(change['then'])}{unit} {ago} h ago "
             f"({how}, {_hhmm(change['then_ts_actual'])} → {_hhmm(change['now_ts_actual'])}).")
 
 
