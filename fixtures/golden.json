@@ -992,7 +992,7 @@
      "value": 1.2
     }
    ],
-   "expected": 86,
+   "expected": 87,
    "fn": "approx_bytes",
    "name": "bytes with a non-ASCII source"
   },
@@ -2730,7 +2730,7 @@
      }
     ]
    ],
-   "expected": "ts,fetched_ts,source,entity_id,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T15:00:00Z,,open-meteo,A,,rain_rate,,mm/h,model,,aei-mw-exposure 0.2.0,\"x,y\"\n2026-11-02T16:00:00Z,,'=evil,A,,rain_rate,-0.5,mm/h,model,,aei-mw-exposure 0.2.0,\n",
+   "expected": "ts,fetched_ts,source,entity_id,entity_label,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,,site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T15:00:00Z,,open-meteo,A,,,rain_rate,,mm/h,model,,aei-mw-exposure 0.2.0,\"x,y\"\n2026-11-02T16:00:00Z,,'=evil,A,,,rain_rate,-0.5,mm/h,model,,aei-mw-exposure 0.2.0,\n",
    "fn": "to_csv",
    "name": "csv"
   },
@@ -2738,9 +2738,144 @@
    "args": [
     []
    ],
-   "expected": "ts,fetched_ts,source,entity_id,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n",
+   "expected": "ts,fetched_ts,source,entity_id,entity_label,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n",
    "fn": "to_csv",
    "name": "csv empty"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": "Toronto – Hamilton, \"north\" link",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [],
+   "fn": "validate_record",
+   "name": "valid entity_label"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": 5,
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [
+    "entity_label must be a string of at most 200 characters"
+   ],
+   "fn": "validate_record",
+   "name": "entity_label not a string"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [
+    "entity_label must be a string of at most 200 characters"
+   ],
+   "fn": "validate_record",
+   "name": "entity_label too long"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": "Toronto – Hamilton, \"north\" link",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": 149,
+   "fn": "approx_bytes",
+   "name": "bytes count the entity_label (non-ASCII, UTF-8)"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": false,
+      "entity_id": "A",
+      "entity_label": "Toronto – Hamilton, \"north\" link",
+      "entity_type": "site",
+      "fetched_ts": "2026-11-02T14:03:00Z",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.2
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": false,
+      "entity_id": "A",
+      "entity_label": "=HYPERLINK(1)",
+      "entity_type": "site",
+      "fetched_ts": "2026-11-02T14:03:00Z",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.2
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T16:00:00Z",
+      "unit": "mm/h",
+      "value": 0.4
+     }
+    ]
+   ],
+   "expected": "ts,fetched_ts,source,entity_id,entity_label,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,\"Toronto – Hamilton, \"\"north\"\" link\",site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,'=HYPERLINK(1),site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T16:00:00Z,,open-meteo,A,,,rain_rate,0.4,mm/h,model,,aei-mw-exposure 0.2.0,\n",
+   "fn": "to_csv",
+   "name": "csv with entity_label: quoted, formula-guarded, empty when absent"
   },
   {
    "args": [

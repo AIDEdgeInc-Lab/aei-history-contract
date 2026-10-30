@@ -14,7 +14,7 @@ SCHEMA_CHANGE = "https://velorona.ai/schemas/change-summary/1.json"
 METRICS = ("rain_rate", "temperature", "wind_speed", "snowfall", "weather_code", "rain_attenuation_estimate", "exposure_ratio", "status", "clearance_ratio")
 KINDS = ("observed", "forecast", "model")
 ENTITY_TYPES = ("link", "site")
-CSV_COLUMNS = ("ts", "fetched_ts", "source", "entity_id", "entity_type", "metric", "value", "unit", "kind", "derived", "data_version", "nodata_reason")
+CSV_COLUMNS = ("ts", "fetched_ts", "source", "entity_id", "entity_label", "entity_type", "metric", "value", "unit", "kind", "derived", "data_version", "nodata_reason")
 REQUIRED = ("ts", "source", "entity_id", "metric", "value", "unit", "kind", "data_version")
 # Decimal places at which a value is displayed, hence the precision at which "unchanged" is decided (the shipped QGIS rule: not a physical threshold).
 PRECISION = {"rain_rate": 1, "temperature": 1, "wind_speed": 1, "snowfall": 1, "rain_attenuation_estimate": 1, "exposure_ratio": 2, "clearance_ratio": 2}
@@ -129,6 +129,8 @@ def validate_record(r):
         errs.append("value of a numeric metric must be a number or null")
     if "derived" in r and not isinstance(r["derived"], bool):
         errs.append("derived must be a boolean")
+    if "entity_label" in r and (not isinstance(r["entity_label"], str) or len(r["entity_label"]) > 200):
+        errs.append("entity_label must be a string of at most 200 characters")
     if "nodata_reason" in r and (not isinstance(r["nodata_reason"], str) or len(r["nodata_reason"]) > 200):
         errs.append("nodata_reason must be a string of at most 200 characters")
     return errs

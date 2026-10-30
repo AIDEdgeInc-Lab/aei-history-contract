@@ -7,7 +7,7 @@
   const METRICS = ["rain_rate", "temperature", "wind_speed", "snowfall", "weather_code", "rain_attenuation_estimate", "exposure_ratio", "status", "clearance_ratio"];
   const KINDS = ["observed", "forecast", "model"];
   const ENTITY_TYPES = ["link", "site"];
-  const CSV_COLUMNS = ["ts", "fetched_ts", "source", "entity_id", "entity_type", "metric", "value", "unit", "kind", "derived", "data_version", "nodata_reason"];
+  const CSV_COLUMNS = ["ts", "fetched_ts", "source", "entity_id", "entity_label", "entity_type", "metric", "value", "unit", "kind", "derived", "data_version", "nodata_reason"];
   const REQUIRED = ["ts", "source", "entity_id", "metric", "value", "unit", "kind", "data_version"];
   const PRECISION = { rain_rate: 1, temperature: 1, wind_speed: 1, snowfall: 1, rain_attenuation_estimate: 1, exposure_ratio: 2, clearance_ratio: 2 };
   const ENUM_METRICS = ["status", "weather_code"];
@@ -76,6 +76,7 @@
     if (v !== null && typeof v !== "string" && !isNumber(v)) errs.push("value must be a finite number, a string or null");
     if (!ENUM_METRICS.includes(r.metric) && typeof v === "string") errs.push("value of a numeric metric must be a number or null");
     if (has(r, "derived") && typeof r.derived !== "boolean") errs.push("derived must be a boolean");
+    if (has(r, "entity_label") && (typeof r.entity_label !== "string" || [...r.entity_label].length > 200)) errs.push("entity_label must be a string of at most 200 characters");
     if (has(r, "nodata_reason") && (typeof r.nodata_reason !== "string" || [...r.nodata_reason].length > 200)) errs.push("nodata_reason must be a string of at most 200 characters");
     return errs;
   }

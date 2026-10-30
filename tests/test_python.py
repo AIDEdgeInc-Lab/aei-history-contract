@@ -64,6 +64,14 @@ def test_text_never_uses_judgement_words():
             assert not any(w in low for w in ("worsen", "improv", "predict", "forecast to"))
 
 
+def test_entity_label_is_an_optional_column_next_to_the_hashed_id():
+    r = {"ts": "2026-11-02T14:00:00Z", "source": "s", "entity_id": "abc123", "entity_label": "Site, A", "metric": "rain_rate", "value": 1, "unit": "mm/h", "kind": "model", "data_version": "v"}
+    assert c.validate_record(r) == [] and c.validate_record(dict(r, entity_label="x" * 201)) and c.validate_record(dict(r, entity_label=3))
+    head, line = c.to_csv([r]).splitlines()
+    assert head.split(",")[3:5] == ["entity_id", "entity_label"] and line.startswith('2026-11-02T14:00:00Z,,s,abc123,"Site, A",')
+    assert c.summarize_changes([r], "abc123", "2026-11-02T14:00:00Z", 6)   # the label never takes part in matching
+
+
 def test_csv_guards_formulas_in_text_but_not_numbers():
     assert c.csv_cell("=1+1") == "'=1+1" and c.csv_cell(-1.5) == "-1.5" and c.csv_cell("a,b") == '"a,b"'
 
