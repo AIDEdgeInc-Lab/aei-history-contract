@@ -1,0 +1,2900 @@
+{
+ "cases": [
+  {
+   "args": [
+    "1970-01-01T00:00:00Z"
+   ],
+   "expected": 0.0,
+   "fn": "parse_ts",
+   "name": "parse 1970-01-01T00:00:00Z"
+  },
+  {
+   "args": [
+    "2000-02-29T23:59:59Z"
+   ],
+   "expected": 951868799.0,
+   "fn": "parse_ts",
+   "name": "parse 2000-02-29T23:59:59Z"
+  },
+  {
+   "args": [
+    "2026-11-02T14:00:00Z"
+   ],
+   "expected": 1793628000.0,
+   "fn": "parse_ts",
+   "name": "parse 2026-11-02T14:00:00Z"
+  },
+  {
+   "args": [
+    "2026-03-01T00:00:00Z"
+   ],
+   "expected": 1772323200.0,
+   "fn": "parse_ts",
+   "name": "parse 2026-03-01T00:00:00Z"
+  },
+  {
+   "args": [
+    "1969-12-31T23:59:59Z"
+   ],
+   "expected": -1.0,
+   "fn": "parse_ts",
+   "name": "parse 1969-12-31T23:59:59Z"
+  },
+  {
+   "args": [
+    "2026-11-02T14:00:00.250Z"
+   ],
+   "expected": 1793628000.25,
+   "fn": "parse_ts",
+   "name": "parse 2026-11-02T14:00:00.250Z"
+  },
+  {
+   "args": [
+    "2026-02-30T00:00:00"
+   ],
+   "expected": null,
+   "fn": "parse_ts",
+   "name": "parse 2026-02-30T00:00:00"
+  },
+  {
+   "args": [
+    "2026-13-01T00:00:00Z"
+   ],
+   "expected": null,
+   "fn": "parse_ts",
+   "name": "parse 2026-13-01T00:00:00Z"
+  },
+  {
+   "args": [
+    "not a time"
+   ],
+   "expected": null,
+   "fn": "parse_ts",
+   "name": "parse not a time"
+  },
+  {
+   "args": [
+    0
+   ],
+   "expected": "1970-01-01T00:00:00Z",
+   "fn": "format_ts",
+   "name": "format 0"
+  },
+  {
+   "args": [
+    951868799
+   ],
+   "expected": "2000-02-29T23:59:59Z",
+   "fn": "format_ts",
+   "name": "format 951868799"
+  },
+  {
+   "args": [
+    1793628000
+   ],
+   "expected": "2026-11-02T14:00:00Z",
+   "fn": "format_ts",
+   "name": "format 1793628000"
+  },
+  {
+   "args": [
+    1772323200
+   ],
+   "expected": "2026-03-01T00:00:00Z",
+   "fn": "format_ts",
+   "name": "format 1772323200"
+  },
+  {
+   "args": [
+    -1
+   ],
+   "expected": "1969-12-31T23:59:59Z",
+   "fn": "format_ts",
+   "name": "format -1"
+  },
+  {
+   "args": [
+    0.25,
+    1
+   ],
+   "expected": "0.3",
+   "fn": "format_fixed",
+   "name": "fixed 0.25/1"
+  },
+  {
+   "args": [
+    0.25,
+    1
+   ],
+   "expected": 0.3,
+   "fn": "round_half_away",
+   "name": "round 0.25/1"
+  },
+  {
+   "args": [
+    0.05,
+    1
+   ],
+   "expected": "0.1",
+   "fn": "format_fixed",
+   "name": "fixed 0.05/1"
+  },
+  {
+   "args": [
+    0.05,
+    1
+   ],
+   "expected": 0.1,
+   "fn": "round_half_away",
+   "name": "round 0.05/1"
+  },
+  {
+   "args": [
+    -0.04,
+    1
+   ],
+   "expected": "0.0",
+   "fn": "format_fixed",
+   "name": "fixed -0.04/1"
+  },
+  {
+   "args": [
+    -0.04,
+    1
+   ],
+   "expected": 0.0,
+   "fn": "round_half_away",
+   "name": "round -0.04/1"
+  },
+  {
+   "args": [
+    2.675,
+    2
+   ],
+   "expected": "2.68",
+   "fn": "format_fixed",
+   "name": "fixed 2.675/2"
+  },
+  {
+   "args": [
+    2.675,
+    2
+   ],
+   "expected": 2.68,
+   "fn": "round_half_away",
+   "name": "round 2.675/2"
+  },
+  {
+   "args": [
+    1.005,
+    2
+   ],
+   "expected": "1.00",
+   "fn": "format_fixed",
+   "name": "fixed 1.005/2"
+  },
+  {
+   "args": [
+    1.005,
+    2
+   ],
+   "expected": 1.0,
+   "fn": "round_half_away",
+   "name": "round 1.005/2"
+  },
+  {
+   "args": [
+    0.15,
+    1
+   ],
+   "expected": "0.2",
+   "fn": "format_fixed",
+   "name": "fixed 0.15/1"
+  },
+  {
+   "args": [
+    0.15,
+    1
+   ],
+   "expected": 0.2,
+   "fn": "round_half_away",
+   "name": "round 0.15/1"
+  },
+  {
+   "args": [
+    1234.5678,
+    2
+   ],
+   "expected": "1234.57",
+   "fn": "format_fixed",
+   "name": "fixed 1234.5678/2"
+  },
+  {
+   "args": [
+    1234.5678,
+    2
+   ],
+   "expected": 1234.57,
+   "fn": "round_half_away",
+   "name": "round 1234.5678/2"
+  },
+  {
+   "args": [
+    -1.25,
+    1
+   ],
+   "expected": "-1.3",
+   "fn": "format_fixed",
+   "name": "fixed -1.25/1"
+  },
+  {
+   "args": [
+    -1.25,
+    1
+   ],
+   "expected": -1.3,
+   "fn": "round_half_away",
+   "name": "round -1.25/1"
+  },
+  {
+   "args": [
+    0,
+    2
+   ],
+   "expected": "0.00",
+   "fn": "format_fixed",
+   "name": "fixed 0/2"
+  },
+  {
+   "args": [
+    0,
+    2
+   ],
+   "expected": 0.0,
+   "fn": "round_half_away",
+   "name": "round 0/2"
+  },
+  {
+   "args": [
+    0
+   ],
+   "expected": "0",
+   "fn": "format_number",
+   "name": "number 0"
+  },
+  {
+   "args": [
+    1.2
+   ],
+   "expected": "1.2",
+   "fn": "format_number",
+   "name": "number 1.2"
+  },
+  {
+   "args": [
+    -1e-07
+   ],
+   "expected": "0",
+   "fn": "format_number",
+   "name": "number -1e-07"
+  },
+  {
+   "args": [
+    1e-07
+   ],
+   "expected": "0",
+   "fn": "format_number",
+   "name": "number 1e-07"
+  },
+  {
+   "args": [
+    3
+   ],
+   "expected": "3",
+   "fn": "format_number",
+   "name": "number 3"
+  },
+  {
+   "args": [
+    1234567.891234567
+   ],
+   "expected": "1234567.891235",
+   "fn": "format_number",
+   "name": "number 1234567.891234567"
+  },
+  {
+   "args": [
+    -2.5
+   ],
+   "expected": "-2.5",
+   "fn": "format_number",
+   "name": "number -2.5"
+  },
+  {
+   "args": [
+    0.30000000000000004
+   ],
+   "expected": "0.3",
+   "fn": "format_number",
+   "name": "number 0.30000000000000004"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [],
+   "fn": "validate_record",
+   "name": "valid full"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rain_rate",
+     "nodata_reason": "rain missing",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": null
+    }
+   ],
+   "expected": [],
+   "fn": "validate_record",
+   "name": "valid null value"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "status",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "enum",
+     "value": "CLEAR"
+    }
+   ],
+   "expected": [],
+   "fn": "validate_record",
+   "name": "valid status string"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": "heavy"
+    }
+   ],
+   "expected": [
+    "value of a numeric metric must be a number or null"
+   ],
+   "fn": "validate_record",
+   "name": "numeric metric with string"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_type": "site",
+     "extra": 1,
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [
+    "unknown field extra"
+   ],
+   "fn": "validate_record",
+   "name": "unknown field"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "value": 1.2
+    }
+   ],
+   "expected": [
+    "missing unit"
+   ],
+   "fn": "validate_record",
+   "name": "missing unit"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02 14:00",
+     "unit": "mm/h",
+     "value": 1
+    }
+   ],
+   "expected": [
+    "ts must be a UTC ISO-8601 timestamp ending in Z"
+   ],
+   "fn": "validate_record",
+   "name": "bad ts"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1e999
+    }
+   ],
+   "expected": [
+    "value must be a finite number, a string or null"
+   ],
+   "fn": "validate_record",
+   "name": "infinite value"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "prediction",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1
+    }
+   ],
+   "expected": [
+    "unknown kind"
+   ],
+   "fn": "validate_record",
+   "name": "bad kind"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rainfall",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1
+    }
+   ],
+   "expected": [
+    "unknown metric"
+   ],
+   "fn": "validate_record",
+   "name": "bad metric"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": true
+    }
+   ],
+   "expected": [
+    "value must be a finite number, a string or null"
+   ],
+   "fn": "validate_record",
+   "name": "boolean value"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T18:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    "2026-11-02T19:00:00Z",
+    24,
+    20000,
+    5242880
+   ],
+   "expected": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    1
+   ],
+   "fn": "prune",
+   "name": "retention 24 h keeps the boundary row and a future forecast"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T18:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    "2026-11-02T19:00:00Z",
+    6,
+    20000,
+    5242880
+   ],
+   "expected": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    3
+   ],
+   "fn": "prune",
+   "name": "retention 6 h"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T18:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    "2026-11-02T19:00:00Z",
+    24,
+    3,
+    5242880
+   ],
+   "expected": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    3
+   ],
+   "fn": "prune",
+   "name": "row cap 3 drops the oldest"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T18:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-01T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    "2026-11-02T19:00:00Z",
+    24,
+    20000,
+    160
+   ],
+   "expected": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-03T02:00:00Z",
+      "unit": "mm/h",
+      "value": 4.0
+     }
+    ],
+    5
+   ],
+   "fn": "prune",
+   "name": "byte cap drops the oldest"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "entity_id": "A",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-méteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": 87,
+   "fn": "approx_bytes",
+   "name": "bytes with a non-ASCII source"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 0.62
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.24
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "degC",
+      "value": 10.04
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "degC",
+      "value": 10.05
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "enum",
+      "value": "CLEAR"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "enum",
+      "value": "WATCH"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "ratio",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "ratio",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T18:00:00Z",
+      "unit": "km/h",
+      "value": 5.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "km/h",
+      "value": 6.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "B",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    5
+   ],
+   "expected": {
+    "changes": [
+     {
+      "delta": null,
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "now": null,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "no_data",
+      "source": "open-meteo",
+      "then": 0.5,
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "ratio"
+     },
+     {
+      "delta": 1.2,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 1.24,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "increased",
+      "source": "open-meteo",
+      "then": 0.0,
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "mm/h"
+     },
+     {
+      "delta": 0.0,
+      "kind": "observed",
+      "metric": "rain_rate",
+      "now": 0.3,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "unchanged",
+      "source": "eccc-swob",
+      "then": 0.3,
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "mm/h"
+     },
+     {
+      "delta": null,
+      "kind": "model",
+      "metric": "status",
+      "now": "WATCH",
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "status_changed",
+      "source": "open-meteo",
+      "then": "CLEAR",
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "enum"
+     },
+     {
+      "delta": 0.1,
+      "kind": "model",
+      "metric": "temperature",
+      "now": 10.05,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "increased",
+      "source": "open-meteo",
+      "then": 10.04,
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "degC"
+     },
+     {
+      "available_hours": 1.0,
+      "kind": "model",
+      "metric": "wind_speed",
+      "now": 6.0,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "km/h"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 5,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T14:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "A, 5 h"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 0.62
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.24
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "degC",
+      "value": 10.04
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "degC",
+      "value": 10.05
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "enum",
+      "value": "CLEAR"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "enum",
+      "value": "WATCH"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "ratio",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "ratio",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T18:00:00Z",
+      "unit": "km/h",
+      "value": 5.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "km/h",
+      "value": 6.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "B",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    1
+   ],
+   "expected": {
+    "changes": [
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "now": null,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "ratio"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 1.24,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "observed",
+      "metric": "rain_rate",
+      "now": 0.3,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "eccc-swob",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "status",
+      "now": "WATCH",
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "enum"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "temperature",
+      "now": 10.05,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "degC"
+     },
+     {
+      "delta": 1.0,
+      "kind": "model",
+      "metric": "wind_speed",
+      "now": 6.0,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "increased",
+      "source": "open-meteo",
+      "then": 5.0,
+      "then_ts_actual": "2026-11-02T18:00:00Z",
+      "unit": "km/h"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 1,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T18:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "A, 1 h (wind only has a 1 h partner; others fall outside 30 min)"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 0.62
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.24
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "degC",
+      "value": 10.04
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "degC",
+      "value": 10.05
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "enum",
+      "value": "CLEAR"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "enum",
+      "value": "WATCH"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "ratio",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "ratio",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T18:00:00Z",
+      "unit": "km/h",
+      "value": 5.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "km/h",
+      "value": 6.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "B",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    24
+   ],
+   "expected": {
+    "changes": [
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "now": null,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "ratio"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 1.24,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "observed",
+      "metric": "rain_rate",
+      "now": 0.3,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "eccc-swob",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "status",
+      "now": "WATCH",
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "enum"
+     },
+     {
+      "available_hours": 5.0,
+      "kind": "model",
+      "metric": "temperature",
+      "now": 10.05,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "degC"
+     },
+     {
+      "available_hours": 1.0,
+      "kind": "model",
+      "metric": "wind_speed",
+      "now": 6.0,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "km/h"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 24,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-01T19:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "A, 24 h (nothing that old)"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 0.62
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.24
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "degC",
+      "value": 10.04
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "degC",
+      "value": 10.05
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "enum",
+      "value": "CLEAR"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "enum",
+      "value": "WATCH"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "ratio",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "ratio",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T18:00:00Z",
+      "unit": "km/h",
+      "value": 5.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "km/h",
+      "value": 6.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "B",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     }
+    ],
+    "B",
+    "2026-11-02T19:00:00Z",
+    5
+   ],
+   "expected": {
+    "changes": [
+     {
+      "available_hours": 0.0,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 1.0,
+      "now_ts_actual": "2026-11-02T14:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "mm/h"
+     }
+    ],
+    "entity_id": "B",
+    "n_hours": 5,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T14:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "B has a single row"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 0.62
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.24
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "degC",
+      "value": 10.04
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "degC",
+      "value": 10.05
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "enum",
+      "value": "CLEAR"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "enum",
+      "value": "WATCH"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "ratio",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "ratio",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T18:00:00Z",
+      "unit": "km/h",
+      "value": 5.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "km/h",
+      "value": 6.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "B",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     }
+    ],
+    "Z",
+    "2026-11-02T19:00:00Z",
+    5
+   ],
+   "expected": {
+    "changes": [],
+    "entity_id": "Z",
+    "n_hours": 5,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T14:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "unknown entity"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 0.62
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.24
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "observed",
+      "metric": "rain_rate",
+      "source": "eccc-swob",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 0.3
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "degC",
+      "value": 10.04
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "temperature",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "degC",
+      "value": 10.05
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "enum",
+      "value": "CLEAR"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": true,
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "status",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "enum",
+      "value": "WATCH"
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "ratio",
+      "value": 0.5
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "nodata_reason": "no rain value",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "ratio",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T18:00:00Z",
+      "unit": "km/h",
+      "value": 5.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "wind_speed",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "km/h",
+      "value": 6.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "B",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     }
+    ],
+    "A",
+    "2026-11-02T16:00:00Z",
+    2
+   ],
+   "expected": {
+    "changes": [
+     {
+      "available_hours": 0.0,
+      "kind": "model",
+      "metric": "exposure_ratio",
+      "now": 0.5,
+      "now_ts_actual": "2026-11-02T14:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "ratio"
+     },
+     {
+      "available_hours": 0.0,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 0.0,
+      "now_ts_actual": "2026-11-02T14:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 0.0,
+      "kind": "observed",
+      "metric": "rain_rate",
+      "now": 0.3,
+      "now_ts_actual": "2026-11-02T14:00:00Z",
+      "result": "insufficient_history",
+      "source": "eccc-swob",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 0.0,
+      "kind": "model",
+      "metric": "status",
+      "now": "CLEAR",
+      "now_ts_actual": "2026-11-02T14:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "enum"
+     },
+     {
+      "available_hours": 0.0,
+      "kind": "model",
+      "metric": "temperature",
+      "now": 10.04,
+      "now_ts_actual": "2026-11-02T14:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "degC"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 2,
+    "now_ts": "2026-11-02T16:00:00Z",
+    "then_ts": "2026-11-02T14:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "now in the past ignores later rows"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:00:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T10:20:00Z",
+      "unit": "mm/h",
+      "value": 2.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 2.04
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    9
+   ],
+   "expected": {
+    "changes": [
+     {
+      "delta": 0.0,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 2.04,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "unchanged",
+      "source": "open-meteo",
+      "then": 2.0,
+      "then_ts_actual": "2026-11-02T10:00:00Z",
+      "unit": "mm/h"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 9,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T10:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "tolerance 25 % of 9 h = 135 min"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T17:00:00Z",
+      "unit": "mm/h",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 3.0
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    2
+   ],
+   "expected": {
+    "changes": [
+     {
+      "available_hours": 0.0,
+      "kind": "forecast",
+      "metric": "rain_rate",
+      "now": 3.0,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "mm/h"
+     },
+     {
+      "available_hours": 0.0,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 1.0,
+      "now_ts_actual": "2026-11-02T17:00:00Z",
+      "result": "insufficient_history",
+      "source": "open-meteo",
+      "then": null,
+      "unit": "mm/h"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 2,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T17:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "model and forecast are never compared"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.25
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "mm/h",
+      "value": 1.35
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    5
+   ],
+   "expected": {
+    "changes": [
+     {
+      "delta": 0.1,
+      "kind": "model",
+      "metric": "rain_rate",
+      "now": 1.35,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "increased",
+      "source": "open-meteo",
+      "then": 1.25,
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "mm/h"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 5,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T14:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "1.25 -> 1.35 displayed 1.3 -> 1.4 (half away from zero)"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "weather_code",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "wmo_code",
+      "value": 1.0
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "weather_code",
+      "source": "open-meteo",
+      "ts": "2026-11-02T19:00:00Z",
+      "unit": "wmo_code",
+      "value": 61
+     }
+    ],
+    "A",
+    "2026-11-02T19:00:00Z",
+    5
+   ],
+   "expected": {
+    "changes": [
+     {
+      "delta": null,
+      "kind": "model",
+      "metric": "weather_code",
+      "now": 61,
+      "now_ts_actual": "2026-11-02T19:00:00Z",
+      "result": "status_changed",
+      "source": "open-meteo",
+      "then": 1.0,
+      "then_ts_actual": "2026-11-02T14:00:00Z",
+      "unit": "wmo_code"
+     }
+    ],
+    "entity_id": "A",
+    "n_hours": 5,
+    "now_ts": "2026-11-02T19:00:00Z",
+    "then_ts": "2026-11-02T14:00:00Z"
+   },
+   "fn": "summarize_changes",
+   "name": "weather code is an enum"
+  },
+  {
+   "args": [
+    {
+     "delta": null,
+     "kind": "model",
+     "metric": "exposure_ratio",
+     "nodata_reason": "no rain value",
+     "now": null,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "no_data",
+     "source": "open-meteo",
+     "then": 0.5,
+     "then_ts_actual": "2026-11-02T14:00:00Z",
+     "unit": "ratio"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Exposure ratio at Site A: NO DATA now (no rain value). Nothing was substituted.",
+   "fn": "render_text",
+   "name": "text exposure_ratio/model/open-meteo no_data"
+  },
+  {
+   "args": [
+    {
+     "delta": 1.2,
+     "kind": "model",
+     "metric": "rain_rate",
+     "now": 1.24,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "increased",
+     "source": "open-meteo",
+     "then": 0.0,
+     "then_ts_actual": "2026-11-02T14:00:00Z",
+     "unit": "mm/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Rain rate at Site A: 1.2 mm/h now, 0.0 mm/h 5 h ago (model-derived, open-meteo, 14:00 UTC → 19:00 UTC).",
+   "fn": "render_text",
+   "name": "text rain_rate/model/open-meteo increased"
+  },
+  {
+   "args": [
+    {
+     "delta": 0.0,
+     "kind": "observed",
+     "metric": "rain_rate",
+     "now": 0.3,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "unchanged",
+     "source": "eccc-swob",
+     "then": 0.3,
+     "then_ts_actual": "2026-11-02T14:00:00Z",
+     "unit": "mm/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Rain rate at Site A: 0.3 mm/h now, 0.3 mm/h 5 h ago (observed, eccc-swob, 14:00 UTC → 19:00 UTC).",
+   "fn": "render_text",
+   "name": "text rain_rate/observed/eccc-swob unchanged"
+  },
+  {
+   "args": [
+    {
+     "delta": null,
+     "kind": "model",
+     "metric": "status",
+     "now": "WATCH",
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "status_changed",
+     "source": "open-meteo",
+     "then": "CLEAR",
+     "then_ts_actual": "2026-11-02T14:00:00Z",
+     "unit": "enum"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Status at Site A: WATCH now, CLEAR 5 h ago (model-derived, open-meteo, 14:00 UTC → 19:00 UTC).",
+   "fn": "render_text",
+   "name": "text status/model/open-meteo status_changed"
+  },
+  {
+   "args": [
+    {
+     "delta": 0.1,
+     "kind": "model",
+     "metric": "temperature",
+     "now": 10.05,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "increased",
+     "source": "open-meteo",
+     "then": 10.04,
+     "then_ts_actual": "2026-11-02T14:00:00Z",
+     "unit": "degC"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Temperature at Site A: 10.1 degC now, 10.0 degC 5 h ago (model-derived, open-meteo, 14:00 UTC → 19:00 UTC).",
+   "fn": "render_text",
+   "name": "text temperature/model/open-meteo increased"
+  },
+  {
+   "args": [
+    {
+     "available_hours": 1.0,
+     "kind": "model",
+     "metric": "wind_speed",
+     "now": 6.0,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "insufficient_history",
+     "source": "open-meteo",
+     "then": null,
+     "unit": "km/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Wind speed at Site A: no stored value from about 5 h ago (this series covers 1 h).",
+   "fn": "render_text",
+   "name": "text wind_speed/model/open-meteo insufficient_history"
+  },
+  {
+   "args": [
+    {
+     "available_hours": 5.0,
+     "kind": "model",
+     "metric": "exposure_ratio",
+     "now": null,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "insufficient_history",
+     "source": "open-meteo",
+     "then": null,
+     "unit": "ratio"
+    },
+    24,
+    "Site A"
+   ],
+   "expected": "Exposure ratio at Site A: no stored value from about 24 h ago (this series covers 5 h).",
+   "fn": "render_text",
+   "name": "text insufficient history"
+  },
+  {
+   "args": [
+    {
+     "delta": 1.2,
+     "kind": "model",
+     "metric": "rain_rate",
+     "now": 1.2,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "increased",
+     "source": "open-meteo",
+     "then": 0.0,
+     "then_ts_actual": "2026-11-02T14:24:00Z",
+     "unit": "mm/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Rain rate at Site A: 1.2 mm/h now, 0.0 mm/h 4.6 h ago (model-derived, open-meteo, 14:24 UTC → 19:00 UTC).",
+   "fn": "render_text",
+   "name": "text states the real age (4.6 h), not the window"
+  },
+  {
+   "args": [
+    {
+     "delta": null,
+     "kind": "model",
+     "metric": "rain_rate",
+     "nodata_reason": "rain missing",
+     "now": 1.2,
+     "now_ts_actual": "2026-11-02T19:00:00Z",
+     "result": "no_data",
+     "source": "open-meteo",
+     "then": null,
+     "then_ts_actual": "2026-11-02T14:24:00Z",
+     "unit": "mm/h"
+    },
+    5,
+    "Site A"
+   ],
+   "expected": "Rain rate at Site A: NO DATA 4.6 h ago (rain missing). Nothing was substituted.",
+   "fn": "render_text",
+   "name": "text no data states the real age"
+  },
+  {
+   "args": [
+    "=SUM(A1)"
+   ],
+   "expected": "'=SUM(A1)",
+   "fn": "csv_cell",
+   "name": "cell formula text"
+  },
+  {
+   "args": [
+    -1.5
+   ],
+   "expected": "-1.5",
+   "fn": "csv_cell",
+   "name": "cell negative number is not guarded"
+  },
+  {
+   "args": [
+    "say \"hi\", ok"
+   ],
+   "expected": "\"say \"\"hi\"\", ok\"",
+   "fn": "csv_cell",
+   "name": "cell quoting"
+  },
+  {
+   "args": [
+    null
+   ],
+   "expected": "",
+   "fn": "csv_cell",
+   "name": "cell null"
+  },
+  {
+   "args": [
+    true
+   ],
+   "expected": "true",
+   "fn": "csv_cell",
+   "name": "cell bool"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": false,
+      "entity_id": "A",
+      "entity_type": "site",
+      "fetched_ts": "2026-11-02T14:03:00Z",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.2
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "nodata_reason": "x,y",
+      "source": "open-meteo",
+      "ts": "2026-11-02T15:00:00Z",
+      "unit": "mm/h",
+      "value": null
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "=evil",
+      "ts": "2026-11-02T16:00:00Z",
+      "unit": "mm/h",
+      "value": -0.5
+     }
+    ]
+   ],
+   "expected": "ts,fetched_ts,source,entity_id,entity_label,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,,site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T15:00:00Z,,open-meteo,A,,,rain_rate,,mm/h,model,,aei-mw-exposure 0.2.0,\"x,y\"\n2026-11-02T16:00:00Z,,'=evil,A,,,rain_rate,-0.5,mm/h,model,,aei-mw-exposure 0.2.0,\n",
+   "fn": "to_csv",
+   "name": "csv"
+  },
+  {
+   "args": [
+    []
+   ],
+   "expected": "ts,fetched_ts,source,entity_id,entity_label,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n",
+   "fn": "to_csv",
+   "name": "csv empty"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": "Toronto – Hamilton, \"north\" link",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [],
+   "fn": "validate_record",
+   "name": "valid entity_label"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": 5,
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [
+    "entity_label must be a string of at most 200 characters"
+   ],
+   "fn": "validate_record",
+   "name": "entity_label not a string"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": [
+    "entity_label must be a string of at most 200 characters"
+   ],
+   "fn": "validate_record",
+   "name": "entity_label too long"
+  },
+  {
+   "args": [
+    {
+     "data_version": "aei-mw-exposure 0.2.0",
+     "derived": false,
+     "entity_id": "A",
+     "entity_label": "Toronto – Hamilton, \"north\" link",
+     "entity_type": "site",
+     "fetched_ts": "2026-11-02T14:03:00Z",
+     "kind": "model",
+     "metric": "rain_rate",
+     "source": "open-meteo",
+     "ts": "2026-11-02T14:00:00Z",
+     "unit": "mm/h",
+     "value": 1.2
+    }
+   ],
+   "expected": 149,
+   "fn": "approx_bytes",
+   "name": "bytes count the entity_label (non-ASCII, UTF-8)"
+  },
+  {
+   "args": [
+    [
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": false,
+      "entity_id": "A",
+      "entity_label": "Toronto – Hamilton, \"north\" link",
+      "entity_type": "site",
+      "fetched_ts": "2026-11-02T14:03:00Z",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.2
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "derived": false,
+      "entity_id": "A",
+      "entity_label": "=HYPERLINK(1)",
+      "entity_type": "site",
+      "fetched_ts": "2026-11-02T14:03:00Z",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T14:00:00Z",
+      "unit": "mm/h",
+      "value": 1.2
+     },
+     {
+      "data_version": "aei-mw-exposure 0.2.0",
+      "entity_id": "A",
+      "kind": "model",
+      "metric": "rain_rate",
+      "source": "open-meteo",
+      "ts": "2026-11-02T16:00:00Z",
+      "unit": "mm/h",
+      "value": 0.4
+     }
+    ]
+   ],
+   "expected": "ts,fetched_ts,source,entity_id,entity_label,entity_type,metric,value,unit,kind,derived,data_version,nodata_reason\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,\"Toronto – Hamilton, \"\"north\"\" link\",site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T14:00:00Z,2026-11-02T14:03:00Z,open-meteo,A,'=HYPERLINK(1),site,rain_rate,1.2,mm/h,model,false,aei-mw-exposure 0.2.0,\n2026-11-02T16:00:00Z,,open-meteo,A,,,rain_rate,0.4,mm/h,model,,aei-mw-exposure 0.2.0,\n",
+   "fn": "to_csv",
+   "name": "csv with entity_label: quoted, formula-guarded, empty when absent"
+  },
+  {
+   "args": [
+    "link/009 A→B",
+    "2026-11-02T19:00:00Z"
+   ],
+   "expected": "velorona-history-link_009_A_B-20261102T190000Z.csv",
+   "fn": "csv_filename",
+   "name": "filename"
+  },
+  {
+   "args": [
+    "###",
+    "2026-11-02T19:00:00Z"
+   ],
+   "expected": "velorona-history-history-20261102T190000Z.csv",
+   "fn": "csv_filename",
+   "name": "filename fallback"
+  }
+ ],
+ "version": "0.2.0"
+}
