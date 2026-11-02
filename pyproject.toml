@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,8 +7,14 @@ name = "aei-history-contract"
 version = "0.2.0"
 description = "Velorona local-history contract: HistoryRecord schema, retention/size pruning, deterministic 'what changed' rules and CSV export (Python reference + JS port)."
 requires-python = ">=3.9"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+readme = "README.md"
 dependencies = []
+
+[project.urls]
+Source = "https://github.com/AIDEdgeInc-Lab/aei-history-contract"
+Issues = "https://github.com/AIDEdgeInc-Lab/aei-history-contract/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
