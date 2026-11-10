@@ -2894,7 +2894,34 @@
    "expected": "velorona-history-history-20261102T190000Z.csv",
    "fn": "csv_filename",
    "name": "filename fallback"
+  },
+  {
+   "args": [
+    "A",
+    "2026-11-02T19:00:00.123Z"
+   ],
+   "expected": "velorona-history-A-20261102T190000.123Z.csv",
+   "fn": "csv_filename",
+   "name": "filename keeps milliseconds unchanged"
+  },
+  {
+   "args": [
+    "A",
+    "../../etc/x"
+   ],
+   "expected": "velorona-history-A-.._.._etc_x.csv",
+   "fn": "csv_filename",
+   "name": "filename: now_ts can never add a path separator"
+  },
+  {
+   "args": [
+    "A",
+    "C:\\x\\y 𝔁"
+   ],
+   "expected": "velorona-history-A-C_x_y_.csv",
+   "fn": "csv_filename",
+   "name": "filename: backslash, space and non-ASCII in now_ts become _"
   }
  ],
- "version": "0.2.0"
+ "version": "0.2.1"
 }
