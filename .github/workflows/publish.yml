@@ -13,8 +13,19 @@ permissions:
   contents: read
 
 jobs:
+  # Release test gate: the same checks as CI (test matrix, strict build check, wheel hygiene, clean-venv install, dependency
+  # audit), run on the exact commit being released. The audit is blocking here. Nothing is built for upload unless this passes.
+  release-tests:
+    name: Release tests (released commit)
+    uses: AIDEdgeInc-Lab/.github/.github/workflows/reusable-python-lib-ci.yml@b98a66fe6b2d73292495a23cbbe861e108d87804
+    with:
+      import-name: aei_history_contract
+      python-versions: '["3.9","3.10","3.11","3.12"]'
+      audit-blocking: true
+
   build:
     name: Build distribution
+    needs: release-tests
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,6 +50,14 @@ jobs:
 
       - name: Verify package metadata
         run: twine check dist/*
+
+      - name: Release gate - tag, project version and built files agree
+        env:
+          EVENT: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: python .github/scripts/check_release_version.py
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
