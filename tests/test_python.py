@@ -21,8 +21,8 @@ def test_golden_case(case):
 
 
 def test_version_matches_pyproject_and_golden():
-    assert c.VERSION == GOLD["version"] == "0.2.0"
-    assert 'version = "0.2.0"' in (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text()
+    assert c.VERSION == GOLD["version"] == "0.2.1"
+    assert 'version = "0.2.1"' in (Path(__file__).resolve().parent.parent / "pyproject.toml").read_text()
 
 
 def test_the_contract_example_sentence():
@@ -90,3 +90,12 @@ def test_the_text_states_the_real_age_of_the_compared_value_not_the_requested_wi
     nodata = [dict(rec("2026-11-02T14:24:00Z", None), nodata_reason="rain missing"), rec("2026-11-02T19:00:00Z", 1.2)]
     ch = c.summarize_changes(nodata, "A", "2026-11-02T19:00:00Z", 5)["changes"][0]
     assert "NO DATA 4.6 h ago (rain missing)" in c.render_text(ch, 5, "Site A")
+
+
+def test_csv_filename_never_contains_a_path_separator():
+    """Security baseline (0.2.1): now_ts is sanitized like entity_id, so a caller that joins the name onto a folder cannot be sent
+    elsewhere. Valid timestamps give the same name as before (pinned by the golden cases)."""
+    for entity, now in [("a/b", "../../etc/passwd"), ("..", "..\\..\\x"), ("A", "2026-11-02T19:00:00Z/../../x"), ("A", "x\x00y")]:
+        name = c.csv_filename(entity, now)
+        assert "/" not in name and "\\" not in name and "\x00" not in name
+        assert name.startswith("velorona-history-") and name.endswith(".csv")

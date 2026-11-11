@@ -96,6 +96,9 @@ add("approx_bytes", [lab], "bytes count the entity_label (non-ASCII, UTF-8)")
 add("to_csv", [[lab, dict(good, entity_label="=HYPERLINK(1)"), rec(H(16), 0.4)]], "csv with entity_label: quoted, formula-guarded, empty when absent")
 add("csv_filename", ["link/009 A→B", "2026-11-02T19:00:00Z"], "filename")
 add("csv_filename", ["###", "2026-11-02T19:00:00Z"], "filename fallback")
+add("csv_filename", ["A", "2026-11-02T19:00:00.123Z"], "filename keeps milliseconds unchanged")
+add("csv_filename", ["A", "../../etc/x"], "filename: now_ts can never add a path separator")
+add("csv_filename", ["A", "C:\\x\\y 𝔁"], "filename: backslash, space and non-ASCII in now_ts become _")
 
 out = []
 for case in cases:

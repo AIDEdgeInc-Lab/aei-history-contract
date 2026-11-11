@@ -7,7 +7,7 @@ integer, never with round() or toFixed(), so Python and JavaScript agree on ever
 import math
 import re
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 SCHEMA_RECORD = "https://velorona.ai/schemas/history-record/1.json"
 SCHEMA_CHANGE = "https://velorona.ai/schemas/change-summary/1.json"
 
@@ -276,5 +276,7 @@ def to_csv(records):
 
 
 def csv_filename(entity_id, now_ts):
+    """A file name with no path separator in it, whatever the two arguments contain. Unchanged for valid timestamps."""
     safe = re.sub(r"[^A-Za-z0-9._-]+", "_", entity_id)[:60].strip("_") or "history"
-    return f"velorona-history-{safe}-{now_ts.replace(':', '').replace('-', '')}.csv"
+    stamp = re.sub(r"[^A-Za-z0-9.]+", "_", now_ts.replace(":", "").replace("-", ""))
+    return f"velorona-history-{safe}-{stamp}.csv"

@@ -3,7 +3,7 @@
 // module.exports. No I/O, no clock: callers pass `now`.
 (function (root) {
   "use strict";
-  const VERSION = "0.2.0";
+  const VERSION = "0.2.1";
   const METRICS = ["rain_rate", "temperature", "wind_speed", "snowfall", "weather_code", "rain_attenuation_estimate", "exposure_ratio", "status", "clearance_ratio"];
   const KINDS = ["observed", "forecast", "model"];
   const ENTITY_TYPES = ["link", "site"];
@@ -160,7 +160,8 @@
   }
   function csvFilename(entityId, nowTs) {
     const safe = entityId.replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 60).replace(/^_+|_+$/g, "") || "history";
-    return `velorona-history-${safe}-${nowTs.replace(/:/g, "").replace(/-/g, "")}.csv`;
+    const stamp = nowTs.replace(/:/g, "").replace(/-/g, "").replace(/[^A-Za-z0-9.]+/g, "_");
+    return `velorona-history-${safe}-${stamp}.csv`;
   }
 
   const api = { VERSION, METRICS, KINDS, CSV_COLUMNS, PRECISION, LABELS, parseTs, formatTs, roundHalfAway, formatFixed, formatNumber, validateRecord, recordKey, approxBytes, prune, summarizeChanges, renderText, csvCell, toCsv, csvFilename };
