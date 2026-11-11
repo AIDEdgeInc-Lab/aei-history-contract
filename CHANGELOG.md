@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.1 - unreleased (release candidate)
+## 0.2.1 - 2026-11-11
 Security baseline. `csv_filename(entity_id, now_ts)` now sanitizes `now_ts` the way it already sanitized `entity_id`: after removing `:` and `-`, any run of characters other than letters, digits and `.` becomes `_`. In 0.2.0 a `now_ts` containing `/` or `\` produced a "file name" with a path in it, which a caller joining it onto a folder would follow. Identical output for every valid timestamp, milliseconds included. Python + JS + 3 new golden cases (92 total); all 89 earlier cases byte-identical. `SECURITY.md` added.
 Repository (not in the package): a CI workflow now runs the Python and JavaScript tests on every push and pull request (Python 3.9-3.12); the publish workflow runs the same tests on the released commit, checks that the tag, version and built files agree, and only then builds for upload. Python support is unchanged (`>=3.9`): the package has no third-party dependencies.
 
