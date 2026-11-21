@@ -4,4 +4,9 @@ __pycache__/
 *.egg-info/
 
 # Local secrets and build output (never commit)
- .env *.pem *.key dist/ build/ .venv/
+.env
+*.pem
+*.key
+dist/
+build/
+.venv/
